@@ -57,6 +57,8 @@ int main(void)
     unsigned int woodShader = createShader("wood.vert", "wood.frag");
     unsigned int waveShader = createShader("wave.vert", "wave.frag");
     unsigned int compasShader = createShader("wave.vert", "compas.frag");
+    unsigned int needle1Shader = createShader("wave.vert", "needle1.frag");
+    unsigned int needle2Shader = createShader("wave.vert", "needle2.frag");
 
     float circle[CRES * 2 + 4]; // +4 je za x i y koordinate centra kruga, i za x i y od nultog ugla
     float r = 0.2; //poluprecnik
@@ -362,7 +364,7 @@ int main(void)
         glDrawArrays(GL_TRIANGLE_FAN, 0, sizeof(circle) / (2 * sizeof(float)));
 
 
-        glUseProgram(waveShader);
+        glUseProgram(needle1Shader);
         glBindVertexArray(VAO[7]);
         glDrawArrays(GL_LINES, 0, 2);
         rotationAngle += 0.1;
@@ -378,7 +380,7 @@ int main(void)
         
         glBindBuffer(GL_ARRAY_BUFFER, VBO[7]);
         glBufferSubData(GL_ARRAY_BUFFER, 0, sizeof(line), line);
-
+        glUseProgram(needle2Shader);
         glBindVertexArray(VAO[8]);
         glDrawArrays(GL_LINES, 0, 2);
         

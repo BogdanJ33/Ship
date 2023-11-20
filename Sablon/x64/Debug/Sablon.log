@@ -6,27 +6,27 @@ C:\Users\Bogdan\ShipGrafika\Ship\Sablon\Ship.h(10): warning C4305: 'initializing
               _Ty=float
           ]
 C:\Users\Bogdan\ShipGrafika\Ship\Sablon\Ship.h(11): warning C4305: 'initializing': truncation from 'double' to 'float'
-C:\Users\Bogdan\ShipGrafika\Ship\Sablon\main.cpp(62,18): warning C4305: 'initializing': truncation from 'double' to 'float'
-C:\Users\Bogdan\ShipGrafika\Ship\Sablon\main.cpp(65,20): warning C4305: '=': truncation from 'double' to 'float'
-C:\Users\Bogdan\ShipGrafika\Ship\Sablon\main.cpp(70,31): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
-C:\Users\Bogdan\ShipGrafika\Ship\Sablon\main.cpp(71,37): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
-C:\Users\Bogdan\ShipGrafika\Ship\Sablon\main.cpp(78,21): warning C4305: '=': truncation from 'double' to 'float'
-C:\Users\Bogdan\ShipGrafika\Ship\Sablon\main.cpp(83,31): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
-C:\Users\Bogdan\ShipGrafika\Ship\Sablon\main.cpp(84,38): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
-C:\Users\Bogdan\ShipGrafika\Ship\Sablon\main.cpp(95,27): warning C4305: 'initializing': truncation from 'double' to 'float'
-C:\Users\Bogdan\ShipGrafika\Ship\Sablon\main.cpp(117,5): warning C4305: 'initializing': truncation from 'double' to 'float'
-C:\Users\Bogdan\ShipGrafika\Ship\Sablon\main.cpp(141,5): warning C4305: 'initializing': truncation from 'double' to 'float'
-C:\Users\Bogdan\ShipGrafika\Ship\Sablon\main.cpp(172,5): warning C4305: 'initializing': truncation from 'double' to 'float'
-C:\Users\Bogdan\ShipGrafika\Ship\Sablon\main.cpp(286,26): warning C4305: '+=': truncation from 'double' to 'float'
-C:\Users\Bogdan\ShipGrafika\Ship\Sablon\main.cpp(288,24): warning C4305: '=': truncation from 'double' to 'float'
-C:\Users\Bogdan\ShipGrafika\Ship\Sablon\main.cpp(290,41): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
-C:\Users\Bogdan\ShipGrafika\Ship\Sablon\main.cpp(291,41): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
-C:\Users\Bogdan\ShipGrafika\Ship\Sablon\main.cpp(303,49): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
-C:\Users\Bogdan\ShipGrafika\Ship\Sablon\main.cpp(368,29): warning C4305: '+=': truncation from 'double' to 'float'
-C:\Users\Bogdan\ShipGrafika\Ship\Sablon\main.cpp(370,30): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
-C:\Users\Bogdan\ShipGrafika\Ship\Sablon\main.cpp(375,23): warning C4305: '=': truncation from 'double' to 'float'
-C:\Users\Bogdan\ShipGrafika\Ship\Sablon\main.cpp(377,24): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
-C:\Users\Bogdan\ShipGrafika\Ship\Sablon\main.cpp(386,44): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
-C:\Users\Bogdan\ShipGrafika\Ship\Sablon\main.cpp(391,24): warning C4305: '=': truncation from 'double' to 'float'
-C:\Users\Bogdan\ShipGrafika\Ship\Sablon\main.cpp(393,25): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+C:\Users\Bogdan\ShipGrafika\Ship\Sablon\main.cpp(64,18): warning C4305: 'initializing': truncation from 'double' to 'float'
+C:\Users\Bogdan\ShipGrafika\Ship\Sablon\main.cpp(67,20): warning C4305: '=': truncation from 'double' to 'float'
+C:\Users\Bogdan\ShipGrafika\Ship\Sablon\main.cpp(72,31): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+C:\Users\Bogdan\ShipGrafika\Ship\Sablon\main.cpp(73,37): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+C:\Users\Bogdan\ShipGrafika\Ship\Sablon\main.cpp(80,21): warning C4305: '=': truncation from 'double' to 'float'
+C:\Users\Bogdan\ShipGrafika\Ship\Sablon\main.cpp(85,31): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+C:\Users\Bogdan\ShipGrafika\Ship\Sablon\main.cpp(86,38): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+C:\Users\Bogdan\ShipGrafika\Ship\Sablon\main.cpp(97,27): warning C4305: 'initializing': truncation from 'double' to 'float'
+C:\Users\Bogdan\ShipGrafika\Ship\Sablon\main.cpp(119,5): warning C4305: 'initializing': truncation from 'double' to 'float'
+C:\Users\Bogdan\ShipGrafika\Ship\Sablon\main.cpp(143,5): warning C4305: 'initializing': truncation from 'double' to 'float'
+C:\Users\Bogdan\ShipGrafika\Ship\Sablon\main.cpp(174,5): warning C4305: 'initializing': truncation from 'double' to 'float'
+C:\Users\Bogdan\ShipGrafika\Ship\Sablon\main.cpp(288,26): warning C4305: '+=': truncation from 'double' to 'float'
+C:\Users\Bogdan\ShipGrafika\Ship\Sablon\main.cpp(290,24): warning C4305: '=': truncation from 'double' to 'float'
+C:\Users\Bogdan\ShipGrafika\Ship\Sablon\main.cpp(292,41): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+C:\Users\Bogdan\ShipGrafika\Ship\Sablon\main.cpp(293,41): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+C:\Users\Bogdan\ShipGrafika\Ship\Sablon\main.cpp(305,49): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+C:\Users\Bogdan\ShipGrafika\Ship\Sablon\main.cpp(370,29): warning C4305: '+=': truncation from 'double' to 'float'
+C:\Users\Bogdan\ShipGrafika\Ship\Sablon\main.cpp(372,30): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+C:\Users\Bogdan\ShipGrafika\Ship\Sablon\main.cpp(377,23): warning C4305: '=': truncation from 'double' to 'float'
+C:\Users\Bogdan\ShipGrafika\Ship\Sablon\main.cpp(379,24): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+C:\Users\Bogdan\ShipGrafika\Ship\Sablon\main.cpp(388,44): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+C:\Users\Bogdan\ShipGrafika\Ship\Sablon\main.cpp(393,24): warning C4305: '=': truncation from 'double' to 'float'
+C:\Users\Bogdan\ShipGrafika\Ship\Sablon\main.cpp(395,25): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
   Sablon.vcxproj -> C:\Users\Bogdan\ShipGrafika\Ship\Sablon\x64\Debug\Sablon.exe

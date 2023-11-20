@@ -49,6 +49,8 @@
       <Filter>Source Files\Shader Files</Filter>
     </None>
     <None Include="compas.frag" />
+    <None Include="needle1.frag" />
+    <None Include="needle2.frag" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ship.h">

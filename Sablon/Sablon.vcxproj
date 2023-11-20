@@ -149,6 +149,8 @@
     <None Include="basic.frag" />
     <None Include="basic.vert" />
     <None Include="compas.frag" />
+    <None Include="needle1.frag" />
+    <None Include="needle2.frag" />
     <None Include="packages.config" />
     <None Include="wave.frag" />
     <None Include="wave.vert" />
