@@ -236,7 +236,10 @@ int main(void)
     float animationTime = 0.0f;
     while (!glfwWindowShouldClose(window))
     {
-        centerX += 0.001;
+        if (centerX >= 1 + r) {
+            centerX = -1 - r;
+        }
+        centerX += 0.0002;
         circle[0] = centerX; // Centar X0
         circle[1] = 0.1;     // Centar Y0
         for (int i = 0; i <= CRES; i++) {
