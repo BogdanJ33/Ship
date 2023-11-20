@@ -229,12 +229,25 @@ int main(void)
     glUniform1i(uTex, 0);
     
     startSimulation(&ship);
+    float centerX = 0.0;
     
 
     // Vremenska promenljiva za animaciju boje popunjenog dela progress bara
     float animationTime = 0.0f;
     while (!glfwWindowShouldClose(window))
     {
+        centerX += 0.001;
+        circle[0] = centerX; // Centar X0
+        circle[1] = 0.1;     // Centar Y0
+        for (int i = 0; i <= CRES; i++) {
+            circle[2 + 2 * i] = centerX + r * cos((3.141592 / 180) * (i * 180 / CRES)); // Xi
+            circle[2 + 2 * i + 1] = 0.1 + r * sin((3.141592 / 180) * (i * 180 / CRES)); // Yi
+        }
+       
+        glBindBuffer(GL_ARRAY_BUFFER, VBO[5]);
+        glBufferData(GL_ARRAY_BUFFER, sizeof(circle), circle, GL_STATIC_DRAW);
+        
+        
         
         if (glfwGetKey(window, GLFW_KEY_ESCAPE) == GLFW_PRESS)
         {
