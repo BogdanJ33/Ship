@@ -1,0 +1,6 @@
+C:\Users\Bogdan\Downloads\sablonZaRadBrod\Sablon\x64\Debug\glew32.dll
+C:\Users\Bogdan\Downloads\sablonZaRadBrod\Sablon\x64\Debug\Sablon.exe
+C:\Users\Bogdan\GrafikaProj\sablonZaRadBrod\Sablon\x64\Debug\glew32.dll
+C:\Users\Bogdan\GrafikaProj\sablonZaRadBrod\Sablon\x64\Debug\Sablon.exe
+C:\Users\Bogdan\ShipGrafika\Ship\Sablon\x64\Debug\glew32.dll
+C:\Users\Bogdan\ShipGrafika\Ship\Sablon\x64\Debug\Sablon.exe
