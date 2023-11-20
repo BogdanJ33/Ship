@@ -56,6 +56,7 @@ int main(void)
     unsigned int unifiedShader = createShader("basic.vert", "basic.frag"); 
     unsigned int woodShader = createShader("wood.vert", "wood.frag");
     unsigned int waveShader = createShader("wave.vert", "wave.frag");
+    unsigned int compasShader = createShader("wave.vert", "compas.frag");
 
     float circle[CRES * 2 + 4]; // +4 je za x i y koordinate centra kruga, i za x i y od nultog ugla
     float r = 0.2; //poluprecnik
@@ -69,6 +70,30 @@ int main(void)
         circle[2 + 2 * i] = r * cos((3.141592 / 180) * (i * 180 / CRES)); //Xi
         circle[2 + 2 * i + 1] = 0.1 + r * sin((3.141592 / 180) * (i * 180 / CRES)); //Yi
     }
+
+    float compas[CRES * 2 + 4]; // +4 je za x i y koordinate centra kruga, i za x i y od nultog ugla
+    
+
+    compas[0] = 0; //Centar X0
+    compas[1] = -0.4; //Centar Y0
+    
+    for (i = 0; i <= CRES; i++)
+    {
+
+        compas[2 + 2 * i] = r * cos((3.141592 / 180) * (i * 360 / CRES)); //Xi
+        compas[2 + 2 * i + 1] = -0.4 + r * sin((3.141592 / 180) * (i * 360 / CRES)); //Yi
+    }
+
+    float line[] = {
+        -1.0, -1.0,
+        1.0, 1.0
+    };
+    float line2[] = {
+        -1.0, -1.0,
+        1.0, 1.0
+    };
+    float lineLength = 0.2; // Adjust the length of the line as needed
+    float rotationAngle = 2.0;
 
     float oceanRectangle[] = {
     -1.0, 1.0,0.0, 0.0, 1.0,   // Bottom-left
@@ -146,15 +171,34 @@ int main(void)
 
     };
 
-    unsigned int VAO[6];
-    glGenVertexArrays(6, VAO);
+    unsigned int VAO[9];
+    glGenVertexArrays(9, VAO);
 
-    unsigned int VBO[6];
-    glGenBuffers(6, VBO);
+    unsigned int VBO[9];
+    glGenBuffers(9, VBO);
 
     glBindVertexArray(VAO[5]);
     glBindBuffer(GL_ARRAY_BUFFER, VBO[5]);
     glBufferData(GL_ARRAY_BUFFER, sizeof(circle), circle, GL_STATIC_DRAW);
+    glVertexAttribPointer(0, 2, GL_FLOAT, GL_FALSE, 2 * sizeof(float), (void*)0);
+    glEnableVertexAttribArray(0);
+
+    glBindVertexArray(VAO[6]);
+    glBindBuffer(GL_ARRAY_BUFFER, VBO[6]);
+    glBufferData(GL_ARRAY_BUFFER, sizeof(compas), compas, GL_STATIC_DRAW);
+    glVertexAttribPointer(0, 2, GL_FLOAT, GL_FALSE, 2 * sizeof(float), (void*)0);
+    glEnableVertexAttribArray(0);
+
+    
+    glBindVertexArray(VAO[7]); // Use your VAO for the line
+    glBindBuffer(GL_ARRAY_BUFFER, VBO[7]); // Use your VBO for the line
+    glBufferData(GL_ARRAY_BUFFER, sizeof(line), line, GL_STATIC_DRAW);
+    glVertexAttribPointer(0, 2, GL_FLOAT, GL_FALSE, 2 * sizeof(float), (void*)0);
+    glEnableVertexAttribArray(0);
+
+    glBindVertexArray(VAO[8]); // Use your VAO for the line
+    glBindBuffer(GL_ARRAY_BUFFER, VBO[8]); // Use your VBO for the line
+    glBufferData(GL_ARRAY_BUFFER, sizeof(line2), line2, GL_STATIC_DRAW);
     glVertexAttribPointer(0, 2, GL_FLOAT, GL_FALSE, 2 * sizeof(float), (void*)0);
     glEnableVertexAttribArray(0);
 
@@ -312,6 +356,44 @@ int main(void)
         glUseProgram(waveShader);
         glBindVertexArray(VAO[5]);
         glDrawArrays(GL_TRIANGLE_FAN, 0, sizeof(circle) / (2 * sizeof(float)));
+
+        glUseProgram(compasShader);
+        glBindVertexArray(VAO[6]);
+        glDrawArrays(GL_TRIANGLE_FAN, 0, sizeof(circle) / (2 * sizeof(float)));
+
+
+        glUseProgram(waveShader);
+        glBindVertexArray(VAO[7]);
+        glDrawArrays(GL_LINES, 0, 2);
+        rotationAngle += 0.1;
+
+        float angleInRadians = (3.141592 / 180) * rotationAngle;
+        float cosValue = cos(angleInRadians);
+        float sinValue = sin(angleInRadians);
+
+        line[0] = 0; // Start point X
+        line[1] = -0.4; // Start point Y
+        line[2] = lineLength * cosValue; // End point X
+        line[3] = -0.4 + lineLength * sinValue; // End point Y
+        
+        glBindBuffer(GL_ARRAY_BUFFER, VBO[7]);
+        glBufferSubData(GL_ARRAY_BUFFER, 0, sizeof(line), line);
+
+        glBindVertexArray(VAO[8]);
+        glDrawArrays(GL_LINES, 0, 2);
+        
+
+        angleInRadians = ((3.141592 / 180) * (180 + rotationAngle));
+        cosValue = cos(angleInRadians);
+        sinValue = sin(angleInRadians);
+
+        line2[0] = 0.0; // Start point X
+        line2[1] = -0.4; // Start point Y
+        line2[2] = lineLength * cosValue; // End point X
+        line2[3] = -0.4 + lineLength * sinValue; // End point Y
+
+        glBindBuffer(GL_ARRAY_BUFFER, VBO[8]);
+        glBufferSubData(GL_ARRAY_BUFFER, 0, sizeof(line2), line2);
 
 
         

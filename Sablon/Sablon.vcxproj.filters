@@ -48,6 +48,7 @@
     <None Include="wave.vert">
       <Filter>Source Files\Shader Files</Filter>
     </None>
+    <None Include="compas.frag" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ship.h">

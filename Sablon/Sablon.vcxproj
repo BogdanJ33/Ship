@@ -148,6 +148,7 @@
   <ItemGroup>
     <None Include="basic.frag" />
     <None Include="basic.vert" />
+    <None Include="compas.frag" />
     <None Include="packages.config" />
     <None Include="wave.frag" />
     <None Include="wave.vert" />
