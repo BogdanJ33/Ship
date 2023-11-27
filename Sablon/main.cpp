@@ -15,6 +15,7 @@ unsigned int createShader(const char* vsSource, const char* fsSource);
 static unsigned loadImageToTexture(const char* filePath);
 float progress = 0.0f; 
 bool increaseSpeed = false; 
+float gradient = 0.0f;
 
 
 
@@ -142,6 +143,20 @@ int main(void)
         0.54, -0.2, 0.0, 0.0, 1.0,
     };
 
+    float lines[] = {
+    0.9, -0.1, 0.9, -0.2,
+    0.864, -0.1, 0.864, -0.2,
+    0.828, -0.1, 0.828, -0.2,
+    0.792, -0.1, 0.792, -0.2,
+    0.756, -0.1, 0.756, -0.2,
+    0.72, -0.1, 0.72, -0.2,
+    0.684, -0.1, 0.684, -0.2,
+    0.648, -0.1, 0.648, -0.2,
+    0.612, -0.1, 0.612, -0.2,
+    0.576, -0.1, 0.576, -0.2,
+    };
+
+
     
     
 
@@ -172,12 +187,13 @@ int main(void)
 
 
     };
+    float centerX = 0.0;
 
-    unsigned int VAO[9];
-    glGenVertexArrays(9, VAO);
+    unsigned int VAO[10];
+    glGenVertexArrays(10, VAO);
 
-    unsigned int VBO[9];
-    glGenBuffers(9, VBO);
+    unsigned int VBO[10];
+    glGenBuffers(10, VBO);
 
     glBindVertexArray(VAO[5]);
     glBindBuffer(GL_ARRAY_BUFFER, VBO[5]);
@@ -201,6 +217,12 @@ int main(void)
     glBindVertexArray(VAO[8]); // Use your VAO for the line
     glBindBuffer(GL_ARRAY_BUFFER, VBO[8]); // Use your VBO for the line
     glBufferData(GL_ARRAY_BUFFER, sizeof(line2), line2, GL_STATIC_DRAW);
+    glVertexAttribPointer(0, 2, GL_FLOAT, GL_FALSE, 2 * sizeof(float), (void*)0);
+    glEnableVertexAttribArray(0);
+
+    glBindVertexArray(VAO[9]); // Use your VAO for the line
+    glBindBuffer(GL_ARRAY_BUFFER, VBO[9]); // Use your VBO for the line
+    glBufferData(GL_ARRAY_BUFFER, sizeof(lines), lines, GL_STATIC_DRAW);
     glVertexAttribPointer(0, 2, GL_FLOAT, GL_FALSE, 2 * sizeof(float), (void*)0);
     glEnableVertexAttribArray(0);
 
@@ -261,8 +283,7 @@ int main(void)
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);// T = V = Y
 
     glBindTexture(GL_TEXTURE_2D, 0);
-    unsigned uTexLoc = glGetUniformLocation(woodShader, "uTex");
-    glUniform1i(uTexLoc, 0);
+
 
     unsigned nameTexture = loadImageToTexture("res/ime.png");
     glBindTexture(GL_TEXTURE_2D, nameTexture); //Podesavamo teksturu
@@ -271,21 +292,21 @@ int main(void)
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);// T = V = Y
 
     glBindTexture(GL_TEXTURE_2D, 0);
-    unsigned uTex = glGetUniformLocation(woodShader, "uTex");
-    glUniform1i(uTex, 0);
-    
+  
     startSimulation(&ship);
-    float centerX = 0.0;
+   
     
 
     // Vremenska promenljiva za animaciju boje popunjenog dela progress bara
     float animationTime = 0.0f;
     while (!glfwWindowShouldClose(window))
     {
+       
         if (centerX >= 1 + r) {
             centerX = -1 - r;
         }
-        centerX += 0.0002;
+        
+        centerX += ship.getSpeed()/6000;
         circle[0] = centerX; // Centar X0
         circle[1] = 0.1;     // Centar Y0
         for (int i = 0; i <= CRES; i++) {
@@ -294,7 +315,7 @@ int main(void)
         }
        
         glBindBuffer(GL_ARRAY_BUFFER, VBO[5]);
-        glBufferData(GL_ARRAY_BUFFER, sizeof(circle), circle, GL_STATIC_DRAW);
+        glBufferSubData(GL_ARRAY_BUFFER,0, sizeof(circle), circle);
         
         
         
@@ -302,7 +323,7 @@ int main(void)
         {
             glfwSetWindowShouldClose(window, GL_TRUE);
         }
-        ship.setFuelAmount(ship.getFuelAmount() - 0.01);
+        ship.calculateFuelSpent(0.01);
         float fuelPercentage = ship.getFuelAmount() / ship.getMaxFuelAmount();
         for (int i = 0; i < 20; i=i+2) {
             int index = i;
@@ -319,20 +340,20 @@ int main(void)
         glBindBuffer(GL_ARRAY_BUFFER, VBO[1]);
         glBufferSubData(GL_ARRAY_BUFFER, 0, sizeof(gasVertices), gasVertices);
         
+       
         
-        glClearColor(0.5, 0.5, 0.5, 1.0);
-        glClear(GL_COLOR_BUFFER_BIT);
+        
 
         // Draw the left rectangle with the updated colors
 
         glUseProgram(woodShader);
-        glUniform1i(glGetUniformLocation(woodShader, "uTex"), 0);
+       
         glBindVertexArray(VAO[2]);
 
         //glActiveTexture(GL_TEXTURE0); //tekstura koja se bind-uje nakon ovoga ce se koristiti sa SAMPLER2D uniformom u sejderu koja odgovara njenom indeksu
         glBindTexture(GL_TEXTURE_2D, checkerTexture);
         glDrawArrays(GL_TRIANGLE_STRIP, 0, 4);
-        glBindTexture(GL_TEXTURE_2D, 0);
+       
 
         
        
@@ -340,10 +361,13 @@ int main(void)
 
         //tekstura koja se bind-uje nakon ovoga ce se koristiti sa SAMPLER2D uniformom u sejderu koja odgovara njenom indeksu
         glBindTexture(GL_TEXTURE_2D, nameTexture);
-
         glDrawArrays(GL_TRIANGLE_STRIP, 0, 4);
-        glBindTexture(GL_TEXTURE_2D, 0);
         glUseProgram(unifiedShader);
+
+
+
+
+
         glBindVertexArray(VAO[0]);
         glDrawArrays(GL_TRIANGLE_STRIP, 0, 20);
 
@@ -397,6 +421,11 @@ int main(void)
         glBindBuffer(GL_ARRAY_BUFFER, VBO[8]);
         glBufferSubData(GL_ARRAY_BUFFER, 0, sizeof(line2), line2);
 
+        glUseProgram(needle1Shader);
+        glBindVertexArray(VAO[9]);
+        glDrawArrays(GL_LINES, 0,20);
+        glBindBuffer(GL_ARRAY_BUFFER, VBO[9]);
+
 
         
         
@@ -406,28 +435,25 @@ int main(void)
 
         if (increaseSpeed && progress < 1.0f)
         {
-            progress += 0.0001f;
+            progress += 0.01f;
         }
 
         if (progress >= 1.0f)
         {
-            ship.speedUp();
+            
+            
             progress = 0.0f;
             increaseSpeed = false;
         }
 
-        if (glfwGetKey(window, GLFW_KEY_G) == GLFW_PRESS) {
-        animationTime += 0.001f;
+         gradient = gradient+0.001;
+        float colorR = sin(animationTime + gradient) * 0.5f + 0.5f;
+        float colorG = sin(animationTime + 0.3f + gradient) * 0.5f + 0.5f;
+        float colorB = sin(animationTime + 0.6f + gradient) * 0.5f + 0.5f;
 
-        // Calculate a gradient from left to right based on progress
-        float gradient = progress;
 
         for (int j = 0; j < 20; ++j) {
             int index = j;
-
-            float colorR = sin(animationTime + gradient) * 0.5f + 0.5f;
-            float colorG = sin(animationTime + 0.3f + gradient) * 0.5f + 0.5f;
-            float colorB = sin(animationTime + 0.6f + gradient) * 0.5f + 0.5f;
 
             // Update only the left side of the rectangle based on progress
             if (index * 5 + 0 < animationTime * 4 * 5) {
@@ -448,9 +474,14 @@ int main(void)
                 }
                 glBindBuffer(GL_ARRAY_BUFFER, VBO[0]);
                 glBufferSubData(GL_ARRAY_BUFFER, 0, sizeof(barVertices), barVertices);
-                
+
             }
         }
+
+
+        if (glfwGetKey(window, GLFW_KEY_G) == GLFW_PRESS) {
+            
+        animationTime += 0.001f;
 
     }
     }
